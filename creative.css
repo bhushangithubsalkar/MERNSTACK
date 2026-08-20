@@ -1,0 +1,680 @@
+/* =========================================================
+
+1. ROOT VARIABLES
+   ========================================================= */
+
+:root {
+--bg-primary: #0f172a;
+--bg-secondary: #111827;
+
+--card-bg: rgba(255, 255, 255, 0.07);
+--card-border: rgba(255, 255, 255, 0.15);
+
+--text-primary: #f8fafc;
+--text-secondary: #cbd5e1;
+
+--primary: #6366f1;
+--secondary: #a855f7;
+--cyan: #38bdf8;
+
+--question: #ef4444;
+--output: #22c55e;
+
+--radius-small: 8px;
+--radius-medium: 14px;
+--radius-large: 22px;
+
+--transition: 0.3s ease;
+}
+
+/* =========================================================
+2. RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+/* =========================================================
+3. BODY
+========================================================= */
+
+body {
+font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+min-height: 100vh;
+
+background:
+    radial-gradient(
+        circle at 10% 20%,
+        rgba(99, 102, 241, 0.15),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 80%,
+        rgba(168, 85, 247, 0.15),
+        transparent 30%
+    ),
+
+    var(--bg-primary);
+
+color: var(--text-primary);
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+padding: 40px 20px;
+
+gap: 20px;
+
+overflow-x: hidden;
+
+}
+
+/* =========================================================
+4. ANIMATED BACKGROUND
+========================================================= */
+
+body::before {
+
+content: "";
+
+position: fixed;
+
+width: 300px;
+height: 300px;
+
+border-radius: 50%;
+
+background: rgba(56, 189, 248, 0.08);
+
+filter: blur(80px);
+
+top: 10%;
+left: -100px;
+
+animation: floatingLight 8s ease-in-out infinite;
+
+pointer-events: none;
+
+z-index: -1;
+
+}
+
+body::after {
+
+content: "";
+
+position: fixed;
+
+width: 350px;
+height: 350px;
+
+border-radius: 50%;
+
+background: rgba(168, 85, 247, 0.08);
+
+filter: blur(90px);
+
+bottom: 5%;
+right: -120px;
+
+animation: floatingLight 10s ease-in-out infinite reverse;
+
+pointer-events: none;
+
+z-index: -1;
+
+}
+
+/* =========================================================
+5. FORM
+========================================================= */
+
+#addForm {
+width: min(80%, 900px);
+padding: 25px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 15px;
+background: var(--card-bg);
+border: 1px solid var(--card-border);
+border-radius: var(--radius-large);
+backdrop-filter: blur(15px);
+box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+transition: var(--transition);
+}
+#addForm:hover {
+transform: translateY(-5px);
+border-color: rgba(56, 189, 248, 0.4);
+box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(56, 189, 248, 0.08);
+}
+
+/* =========================================================
+6. INPUTS
+========================================================= */
+
+#addForm input {
+flex: 1 1 180px;
+min-width: 150px;
+padding: 12px 15px;
+border: 1px solid #334155;
+border-radius: var(--radius-small);
+background: rgba(15, 23, 42, 0.8);
+color: white;
+font-size: 1rem;
+outline: none;
+transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+#addForm input::placeholder {color: #94a3b8;}
+
+#addForm input:hover {
+border-color: #64748b;
+transform: translateY(-2px);
+}
+
+#addForm input:focus {
+border-color: var(--cyan);
+
+box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.15),
+    0 0 20px rgba(56, 189, 248, 0.3);
+transform: translateY(-2px);
+}
+
+/* =========================================================
+7. BUTTON
+========================================================= */
+
+#addForm button {
+padding: 12px 25px;
+border: none;
+border-radius: var(--radius-small);
+background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+color: white;
+font-size: 1rem;
+font-weight: bold;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+transition:
+    transform var(--transition),
+    box-shadow var(--transition);}
+
+#addForm button::before {
+content: "";
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+
+transition: 0.5s;
+}
+
+#addForm button:hover::before {left: 100%;}
+
+#addForm button:hover {
+transform: translateY(-4px) scale(1.03);
+box-shadow:
+    0 8px 25px rgba(99, 102, 241, 0.4);}
+
+#addForm button:active {transform: translateY(0) scale(0.97);}
+
+/* =========================================================
+8. DEMO OUTPUT BOXES
+========================================================= */
+
+#demo,
+#demo1,
+#demo2 {
+width: min(80%, 700px);
+padding: 18px 24px;
+border-radius: var(--radius-medium);
+text-align: center;
+transition: var(--transition);
+animation: fadeIn 0.8s ease;}
+#demo {
+background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+font-size: 1.2rem;
+font-weight: bold;
+box-shadow:
+    0 8px 25px rgba(99, 102, 241, 0.3);}
+
+#demo1 {
+background: #0d1117;
+border-left: 5px solid #10b981;
+color: #a7f3d0;
+font-family: "Courier New", monospace;
+line-height: 1.6;
+box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.3);}
+
+#demo2 {
+background: #1e293b;
+border: 1px dashed #64748b;
+color: var(--text-secondary);
+font-weight: bold;
+}
+
+#demo:hover,
+#demo1:hover,
+#demo2:hover {
+transform: translateY(-5px) scale(1.01);
+box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.4);}
+
+/* =========================================================
+9. TITLES
+========================================================= */
+
+.title {
+width: min(90%, 1000px);
+padding: 18px 25px;
+margin: 25px 0;
+text-align: center;
+font-size: clamp(1.5rem, 4vw, 2.5rem);
+font-weight: 800;
+letter-spacing: 1px;
+border-radius: var(--radius-large);
+background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+box-shadow:
+    0 10px 30px rgba(99, 102, 241, 0.3);
+text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.3);
+position: relative;
+overflow: hidden;
+animation: titleGlow 4s ease-in-out infinite;}
+
+.title::after {
+content: "";
+position: absolute;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.1);
+top: -100px;
+right: -50px;}
+
+/* =========================================================
+10. QUESTION BOX
+========================================================= */
+
+.question_box {
+width: min(90%, 1200px);
+display: flex;
+border: 1px solid rgba(255, 255, 255, 0.15);
+border-radius: var(--radius-medium);
+overflow: hidden;
+background: rgba(255, 255, 255, 0.04);
+box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.3);
+transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+animation: slideUp 0.6s ease both;
+}
+
+.question_box:hover {
+transform: translateY(-5px);
+box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(99, 102, 241, 0.08);
+}
+
+/* =========================================================
+11. QUESTION SIDE
+========================================================= */
+
+.question {width: 50%;
+padding: 25px;
+display: flex;
+align-items: center;
+justify-content: center;
+background:
+    linear-gradient(
+        135deg,
+        rgba(239, 68, 68, 0.85),
+        rgba(185, 28, 28, 0.85)
+    );
+
+position: relative;
+}
+
+.question::before {
+content: "QUESTION";
+position: absolute;
+top: 10px;
+left: 15px;
+font-size: 0.7rem;
+font-weight: bold;
+letter-spacing: 2px;
+opacity: 0.7;}
+
+/* =========================================================
+12. OUTPUT SIDE
+========================================================= */
+
+.output {
+width: 50%;
+padding: 25px;
+display: flex;
+align-items: center;
+justify-content: center;
+background:
+    linear-gradient(
+        135deg,
+        rgba(34, 197, 94, 0.85),
+        rgba(21, 128, 61, 0.85)
+    );
+border-left: 2px solid rgba(255, 255, 255, 0.1);
+position: relative;
+
+}
+
+.output::before {
+content: "OUTPUT";
+position: absolute;
+top: 10px;
+left: 15px;
+font-size: 0.7rem;
+font-weight: bold;
+letter-spacing: 2px;
+opacity: 0.7;
+}
+
+/* =========================================================
+13. QUESTION TEXT
+========================================================= */
+
+.ip {
+width: 100%;
+margin: 0;
+padding: 15px;
+color: white;
+font-size: 1rem;
+font-weight: 600;
+line-height: 1.6;
+text-align: center;
+transition: var(--transition);
+}
+
+.question:hover .ip {
+transform: scale(1.03);
+text-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================
+14. OUTPUT TEXT
+========================================================= */
+
+.op {
+width: 100%;
+margin: 0;
+padding: 15px;
+color: #07101c;
+font-size: 1rem;
+font-weight: 700;
+line-height: 1.7;
+text-align: center;
+word-break: break-word;
+}
+
+.output:hover .op {transform: scale(1.03);}
+
+/* =========================================================
+15. OPERATOR OUTPUT BOXES
+========================================================= */
+
+#oper,
+#ari,
+#comp,
+#log,
+#cond {
+width: min(80%, 900px);
+padding: 20px;
+background:
+    linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
+color: #02130d;
+text-align: center;
+border-radius: var(--radius-medium);
+font-weight: bold;
+box-shadow:
+    0 8px 25px rgba(16, 185, 129, 0.25);
+transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+animation: fadeIn 0.6s ease;
+}
+
+#oper:hover,
+#ari:hover,
+#comp:hover,
+#log:hover,
+#cond:hover {
+transform: translateY(-5px);
+box-shadow:
+    0 15px 35px rgba(16, 185, 129, 0.35);
+}
+
+/* =========================================================
+16. HEADINGS INSIDE OUTPUT
+========================================================= */
+
+#oper h1,
+#ari h1,
+#comp h1,
+#log h1,
+#cond h1 {
+margin-bottom: 15px;
+color: white;
+text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+17. FOCUS WITHIN
+========================================================= */
+
+#addForm:focus-within {
+border-color: var(--cyan);
+box-shadow:
+    0 0 25px rgba(56, 189, 248, 0.15);
+}
+
+/* =========================================================
+18. SELECTION
+========================================================= */
+
+::selection {
+background: #a855f7;
+color: white;
+}
+
+/* =========================================================
+19. SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {width: 10px;}
+
+::-webkit-scrollbar-track {background: #020617;}
+
+::-webkit-scrollbar-thumb {
+background:
+    linear-gradient(
+        #6366f1,
+        #a855f7
+    );
+border-radius: 10px;}
+
+::-webkit-scrollbar-thumb:hover {
+background:
+    linear-gradient(
+        #38bdf8,
+        #6366f1
+    );
+}
+
+/* =========================================================
+20. ANIMATIONS
+========================================================= */
+
+@keyframes fadeIn {
+from {
+    opacity: 0;
+    transform: translateY(15px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+@keyframes slideUp {
+from {
+    opacity: 0;
+    transform: translateY(30px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+@keyframes floatingLight {
+0%,
+100% { transform: translate(0, 0);}
+
+50% { transform: translate(50px, -40px);}
+}
+
+@keyframes titleGlow {
+0%,
+100% {
+    box-shadow:
+        0 10px 30px rgba(99, 102, 241, 0.3);
+}
+50% {
+    box-shadow:
+        0 10px 40px rgba(168, 85, 247, 0.5);
+}
+}
+
+/* =========================================================
+21. RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 768px) {
+body {padding: 25px 10px;}
+#addForm { width: 95%;
+    flex-direction: column;
+}
+
+
+#addForm input,
+#addForm button { width: 100%;}
+
+
+.question_box { width: 95%;  flex-direction: column;}
+
+
+.question,
+.output { width: 100%;}
+
+
+.output { border-left: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.title {  width: 95%;}
+
+
+#demo,
+#demo1,
+#demo2 { width: 95%;}
+
+
+#oper,
+#ari,
+#comp,
+#log,
+#cond { width: 95%;}
+
+}
+
+/* =========================================================
+22. SMALL MOBILE DEVICES
+========================================================= */
+
+@media (max-width: 480px) {
+body { padding: 15px 8px; gap: 12px;}
+.title { font-size: 1.4rem;padding: 15px;}
+.question,.output {padding: 20px 15px;}
+.ip,.op { font-size: 0.9rem;}
+#oper,#ari,#comp,#log,#cond {
+    font-size: 0.9rem;
+    padding: 15px;
+}
+}
+
+/* =========================================================
+23. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+}
+}
