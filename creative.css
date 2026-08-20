@@ -1,680 +1,627 @@
-/* =========================================================
-
-1. ROOT VARIABLES
-   ========================================================= */
-
-:root {
---bg-primary: #0f172a;
---bg-secondary: #111827;
-
---card-bg: rgba(255, 255, 255, 0.07);
---card-border: rgba(255, 255, 255, 0.15);
-
---text-primary: #f8fafc;
---text-secondary: #cbd5e1;
-
---primary: #6366f1;
---secondary: #a855f7;
---cyan: #38bdf8;
-
---question: #ef4444;
---output: #22c55e;
-
---radius-small: 8px;
---radius-medium: 14px;
---radius-large: 22px;
-
---transition: 0.3s ease;
-}
-
-/* =========================================================
-2. RESET
-========================================================= */
+/* ================================
+   GLOBAL SETTINGS
+================================ */
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  }
-
-/* =========================================================
-3. BODY
-========================================================= */
-
-body {
-font-family:
-    "Segoe UI",
-    Tahoma,
-    Geneva,
-    Verdana,
-    sans-serif;
-
-min-height: 100vh;
-
-background:
-    radial-gradient(
-        circle at 10% 20%,
-        rgba(99, 102, 241, 0.15),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 90% 80%,
-        rgba(168, 85, 247, 0.15),
-        transparent 30%
-    ),
-
-    var(--bg-primary);
-
-color: var(--text-primary);
-
-display: flex;
-flex-direction: column;
-align-items: center;
-
-padding: 40px 20px;
-
-gap: 20px;
-
-overflow-x: hidden;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* =========================================================
-4. ANIMATED BACKGROUND
-========================================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #ffffff;
+
+    background:
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.12), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(170, 0, 255, 0.15), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(0, 120, 255, 0.12), transparent 30%),
+        #080b16;
+
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   ANIMATED BACKGROUND
+================================ */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    animation: floating 8s ease-in-out infinite alternate;
+}
 
 body::before {
-
-content: "";
-
-position: fixed;
-
-width: 300px;
-height: 300px;
-
-border-radius: 50%;
-
-background: rgba(56, 189, 248, 0.08);
-
-filter: blur(80px);
-
-top: 10%;
-left: -100px;
-
-animation: floatingLight 8s ease-in-out infinite;
-
-pointer-events: none;
-
-z-index: -1;
-
+    background: rgba(0, 255, 255, 0.12);
+    top: 10%;
+    left: -100px;
 }
 
 body::after {
-
-content: "";
-
-position: fixed;
-
-width: 350px;
-height: 350px;
-
-border-radius: 50%;
-
-background: rgba(168, 85, 247, 0.08);
-
-filter: blur(90px);
-
-bottom: 5%;
-right: -120px;
-
-animation: floatingLight 10s ease-in-out infinite reverse;
-
-pointer-events: none;
-
-z-index: -1;
-
+    background: rgba(170, 0, 255, 0.12);
+    bottom: 5%;
+    right: -100px;
+    animation-delay: 2s;
 }
 
-/* =========================================================
-5. FORM
-========================================================= */
+@keyframes floating {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(80px, -50px) scale(1.25);
+    }
+}
+
+
+/* ================================
+   FORM / ADDITION SECTION
+================================ */
 
 #addForm {
-width: min(80%, 900px);
-padding: 25px;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-gap: 15px;
-background: var(--card-bg);
-border: 1px solid var(--card-border);
-border-radius: var(--radius-large);
-backdrop-filter: blur(15px);
-box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-transition: var(--transition);
-}
-#addForm:hover {
-transform: translateY(-5px);
-border-color: rgba(56, 189, 248, 0.4);
-box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.4),
-    0 0 25px rgba(56, 189, 248, 0.08);
+    width: min(90%, 750px);
+    margin: 50px auto;
+    padding: 30px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 25px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.02);
 }
 
-/* =========================================================
-6. INPUTS
-========================================================= */
 
-#addForm input {
-flex: 1 1 180px;
-min-width: 150px;
-padding: 12px 15px;
-border: 1px solid #334155;
-border-radius: var(--radius-small);
-background: rgba(15, 23, 42, 0.8);
-color: white;
-font-size: 1rem;
-outline: none;
-transition:
-    border-color var(--transition),
-    box-shadow var(--transition),
-    transform var(--transition);
+/* ================================
+   INPUTS
+================================ */
+
+input,
+select {
+    padding: 14px 18px;
+
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+
+    outline: none;
+
+    transition:
+        0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-#addForm input::placeholder {color: #94a3b8;}
-
-#addForm input:hover {
-border-color: #64748b;
-transform: translateY(-2px);
+input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
 }
 
-#addForm input:focus {
-border-color: var(--cyan);
+input:focus,
+select:focus {
+    transform: translateY(-4px);
 
-box-shadow:
-    0 0 0 3px rgba(56, 189, 248, 0.15),
-    0 0 20px rgba(56, 189, 248, 0.3);
-transform: translateY(-2px);
+    border-color: #00ffff;
+
+    box-shadow:
+        0 0 10px rgba(0, 255, 255, 0.4),
+        0 0 30px rgba(0, 255, 255, 0.15);
 }
 
-/* =========================================================
-7. BUTTON
-========================================================= */
 
-#addForm button {
-padding: 12px 25px;
-border: none;
-border-radius: var(--radius-small);
-background:
-    linear-gradient(
+/* ================================
+   BUTTONS
+================================ */
+
+button {
+    padding: 13px 24px;
+
+    border: none;
+    border-radius: 12px;
+
+    color: white;
+    background: linear-gradient(
         135deg,
-        var(--primary),
-        var(--secondary)
-    );
-color: white;
-font-size: 1rem;
-font-weight: bold;
-cursor: pointer;
-position: relative;
-overflow: hidden;
-transition:
-    transform var(--transition),
-    box-shadow var(--transition);}
-
-#addForm button::before {
-content: "";
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background:
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
+        #00b7ff,
+        #7b2cff
     );
 
-transition: 0.5s;
+    font-weight: 600;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.3);
+
+    transition: 0.3s ease;
 }
 
-#addForm button:hover::before {left: 100%;}
+button:hover {
+    transform: translateY(-4px) scale(1.03);
 
-#addForm button:hover {
-transform: translateY(-4px) scale(1.03);
-box-shadow:
-    0 8px 25px rgba(99, 102, 241, 0.4);}
+    box-shadow:
+        0 0 15px rgba(0, 200, 255, 0.5),
+        0 0 35px rgba(120, 0, 255, 0.3);
+}
 
-#addForm button:active {transform: translateY(0) scale(0.97);}
+button:active {
+    transform: scale(0.95);
+}
 
-/* =========================================================
-8. DEMO OUTPUT BOXES
-========================================================= */
+
+/* ================================
+   GENERAL OUTPUT
+================================ */
 
 #demo,
 #demo1,
 #demo2 {
-width: min(80%, 700px);
-padding: 18px 24px;
-border-radius: var(--radius-medium);
-text-align: center;
-transition: var(--transition);
-animation: fadeIn 0.8s ease;}
-#demo {
-background:
-    linear-gradient(
-        135deg,
-        var(--primary),
-        var(--secondary)
-    );
-font-size: 1.2rem;
-font-weight: bold;
-box-shadow:
-    0 8px 25px rgba(99, 102, 241, 0.3);}
+    width: min(90%, 700px);
+    margin: 10px auto;
 
-#demo1 {
-background: #0d1117;
-border-left: 5px solid #10b981;
-color: #a7f3d0;
-font-family: "Courier New", monospace;
-line-height: 1.6;
-box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.3);}
+    padding: 15px;
 
-#demo2 {
-background: #1e293b;
-border: 1px dashed #64748b;
-color: var(--text-secondary);
-font-weight: bold;
+    text-align: center;
+
+    color: #00ffff;
+
+    transition: 0.4s ease;
 }
 
-#demo:hover,
-#demo1:hover,
-#demo2:hover {
-transform: translateY(-5px) scale(1.01);
-box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.4);}
 
-/* =========================================================
-9. TITLES
-========================================================= */
+/* ================================
+   TITLES
+================================ */
 
 .title {
-width: min(90%, 1000px);
-padding: 18px 25px;
-margin: 25px 0;
-text-align: center;
-font-size: clamp(1.5rem, 4vw, 2.5rem);
-font-weight: 800;
-letter-spacing: 1px;
-border-radius: var(--radius-large);
-background:
-    linear-gradient(
-        135deg,
-        var(--primary),
-        var(--secondary)
+    width: fit-content;
+
+    margin: 80px auto 35px;
+
+    font-size: clamp(28px, 5vw, 50px);
+
+    text-align: center;
+
+    background: linear-gradient(
+        90deg,
+        #00ffff,
+        #ffffff,
+        #9d4edd,
+        #00ffff
     );
-box-shadow:
-    0 10px 30px rgba(99, 102, 241, 0.3);
-text-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.3);
-position: relative;
-overflow: hidden;
-animation: titleGlow 4s ease-in-out infinite;}
 
-.title::after {
-content: "";
-position: absolute;
-width: 200px;
-height: 200px;
-border-radius: 50%;
-background: rgba(255, 255, 255, 0.1);
-top: -100px;
-right: -50px;}
+    background-size: 300%;
 
-/* =========================================================
-10. QUESTION BOX
-========================================================= */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientText 5s linear infinite;
+
+    text-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+}
+
+
+/* ================================
+   QUESTION CARDS
+================================ */
 
 .question_box {
-width: min(90%, 1200px);
-display: flex;
-border: 1px solid rgba(255, 255, 255, 0.15);
-border-radius: var(--radius-medium);
-overflow: hidden;
-background: rgba(255, 255, 255, 0.04);
-box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.3);
-transition:
-    transform var(--transition),
-    box-shadow var(--transition);
-animation: slideUp 0.6s ease both;
+    width: min(90%, 900px);
+
+    margin: 25px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 180px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35);
+
+    transition: 0.4s ease;
 }
 
 .question_box:hover {
-transform: translateY(-5px);
-box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(99, 102, 241, 0.08);
+    transform: translateY(-8px);
+
+    border-color: rgba(0, 255, 255, 0.4);
+
+    box-shadow:
+        0 20px 50px rgba(0, 255, 255, 0.08);
 }
 
-/* =========================================================
-11. QUESTION SIDE
-========================================================= */
 
-.question {width: 50%;
-padding: 25px;
-display: flex;
-align-items: center;
-justify-content: center;
-background:
-    linear-gradient(
-        135deg,
-        rgba(239, 68, 68, 0.85),
-        rgba(185, 28, 28, 0.85)
-    );
+/* ================================
+   INPUT / QUESTION SIDE
+================================ */
 
-position: relative;
+.question {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 255, 255, 0.08),
+            rgba(100, 0, 255, 0.05)
+        );
+
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-.question::before {
-content: "QUESTION";
-position: absolute;
-top: 10px;
-left: 15px;
-font-size: 0.7rem;
-font-weight: bold;
-letter-spacing: 2px;
-opacity: 0.7;}
-
-/* =========================================================
-12. OUTPUT SIDE
-========================================================= */
-
-.output {
-width: 50%;
-padding: 25px;
-display: flex;
-align-items: center;
-justify-content: center;
-background:
-    linear-gradient(
-        135deg,
-        rgba(34, 197, 94, 0.85),
-        rgba(21, 128, 61, 0.85)
-    );
-border-left: 2px solid rgba(255, 255, 255, 0.1);
-position: relative;
-
-}
-
-.output::before {
-content: "OUTPUT";
-position: absolute;
-top: 10px;
-left: 15px;
-font-size: 0.7rem;
-font-weight: bold;
-letter-spacing: 2px;
-opacity: 0.7;
-}
-
-/* =========================================================
-13. QUESTION TEXT
-========================================================= */
 
 .ip {
-width: 100%;
-margin: 0;
-padding: 15px;
-color: white;
-font-size: 1rem;
-font-weight: 600;
-line-height: 1.6;
-text-align: center;
-transition: var(--transition);
+    text-align: center;
+
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 16px;
 }
 
-.question:hover .ip {
-transform: scale(1.03);
-text-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.4);
+
+/* ================================
+   OUTPUT SIDE
+================================ */
+
+.output {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    overflow: hidden;
+
+    background: rgba(0, 0, 0, 0.15);
 }
 
-/* =========================================================
-14. OUTPUT TEXT
-========================================================= */
+
+/* Output initially starts hidden */
 
 .op {
-width: 100%;
-margin: 0;
-padding: 15px;
-color: #07101c;
-font-size: 1rem;
-font-weight: 700;
-line-height: 1.7;
-text-align: center;
-word-break: break-word;
+    width: 90%;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #00ffff;
+
+    border-radius: 15px;
+
+    background: rgba(0, 255, 255, 0.05);
+
+    border: 1px solid rgba(0, 255, 255, 0.2);
+
+    transform: translateX(-120%);
+
+    opacity: 0;
+
+    transition:
+        transform 0.8s cubic-bezier(.68,-0.55,.27,1.55),
+        opacity 0.5s ease;
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 255, 0.08);
 }
 
-.output:hover .op {transform: scale(1.03);}
 
-/* =========================================================
-15. OPERATOR OUTPUT BOXES
-========================================================= */
+/* JavaScript can add this class */
+
+.op.show {
+    transform: translateX(0);
+
+    opacity: 1;
+}
+
+
+/* ================================
+   TUTORIAL 6 / 7
+================================ */
 
 #oper,
 #ari,
 #comp,
 #log,
 #cond {
-width: min(80%, 900px);
-padding: 20px;
-background:
-    linear-gradient(
-        135deg,
-        #10b981,
-        #059669
-    );
-color: #02130d;
-text-align: center;
-border-radius: var(--radius-medium);
-font-weight: bold;
-box-shadow:
-    0 8px 25px rgba(16, 185, 129, 0.25);
-transition:
-    transform var(--transition),
-    box-shadow var(--transition);
-animation: fadeIn 0.6s ease;
+    width: min(90%, 800px);
+
+    margin: 15px auto;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    transition: 0.3s ease;
 }
 
 #oper:hover,
 #ari:hover,
 #comp:hover,
-#log:hover,
-#cond:hover {
-transform: translateY(-5px);
-box-shadow:
-    0 15px 35px rgba(16, 185, 129, 0.35);
+#log:hover {
+    transform: translateX(8px);
+
+    border-color: rgba(0, 255, 255, 0.4);
 }
 
-/* =========================================================
-16. HEADINGS INSIDE OUTPUT
-========================================================= */
 
-#oper h1,
-#ari h1,
-#comp h1,
-#log h1,
-#cond h1 {
-margin-bottom: 15px;
-color: white;
-text-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.3);
+/* ================================
+   AGE BOX
+================================ */
+
+.age_Box {
+    width: min(90%, 500px);
+
+    margin: 30px auto;
+
+    padding: 35px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-/* =========================================================
-17. FOCUS WITHIN
-========================================================= */
+#res {
+    margin-top: 20px;
 
-#addForm:focus-within {
-border-color: var(--cyan);
-box-shadow:
-    0 0 25px rgba(56, 189, 248, 0.15);
+    font-size: 20px;
+
+    color: #00ffff;
 }
 
-/* =========================================================
-18. SELECTION
-========================================================= */
 
-::selection {
-background: #a855f7;
-color: white;
+/* ================================
+   LANGUAGE SECTION
+================================ */
+
+#language {
+    margin: 20px 5px;
 }
 
-/* =========================================================
-19. SCROLLBAR
-========================================================= */
+#lang_res,
+#thank_res {
+    text-align: center;
 
-::-webkit-scrollbar {width: 10px;}
+    margin: 10px;
 
-::-webkit-scrollbar-track {background: #020617;}
+    color: #00ffff;
+}
+
+
+/* ================================
+   TABLE OF 27
+================================ */
+
+#lo {
+    width: min(90%, 600px);
+
+    margin: 60px auto;
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 255, 255, 0.06),
+            rgba(100, 0, 255, 0.06)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+#lo h1 {
+    margin-bottom: 20px;
+
+    font-size: 22px;
+
+    color: #ffffff;
+}
+
+
+/* ================================
+   NATURAL NUMBER SECTION
+================================ */
+
+#nat {
+    margin: 20px 5px;
+}
+
+#nat_op {
+    margin-top: 20px;
+
+    font-size: 24px;
+
+    color: #00ffff;
+
+    text-align: center;
+
+    animation: resultPop 0.5s ease;
+}
+
+@keyframes resultPop {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* ================================
+   CONTINUE BUTTON
+================================ */
+
+#indexpage {
+    display: block;
+
+    margin: 80px auto;
+
+    padding: 18px 35px;
+
+    font-size: 18px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00c6ff,
+            #7b2ff7,
+            #ff00cc
+        );
+
+    background-size: 200%;
+
+    animation: buttonGradient 4s linear infinite;
+
+    box-shadow:
+        0 0 20px rgba(0, 200, 255, 0.3);
+}
+
+@keyframes buttonGradient {
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 200%;
+    }
+}
+
+#indexpage:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 255, 0.5),
+        0 0 60px rgba(150, 0, 255, 0.3);
+}
+
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080b16;
+}
 
 ::-webkit-scrollbar-thumb {
-background:
-    linear-gradient(
-        #6366f1,
-        #a855f7
+    background: linear-gradient(
+        #00ffff,
+        #7b2cff
     );
-border-radius: 10px;}
 
-::-webkit-scrollbar-thumb:hover {
-background:
-    linear-gradient(
-        #38bdf8,
-        #6366f1
-    );
-}
-
-/* =========================================================
-20. ANIMATIONS
-========================================================= */
-
-@keyframes fadeIn {
-from {
-    opacity: 0;
-    transform: translateY(15px);
-}
-to {
-    opacity: 1;
-    transform: translateY(0);
-}
-}
-@keyframes slideUp {
-from {
-    opacity: 0;
-    transform: translateY(30px);
-}
-to {
-    opacity: 1;
-    transform: translateY(0);
-}
-}
-
-@keyframes floatingLight {
-0%,
-100% { transform: translate(0, 0);}
-
-50% { transform: translate(50px, -40px);}
-}
-
-@keyframes titleGlow {
-0%,
-100% {
-    box-shadow:
-        0 10px 30px rgba(99, 102, 241, 0.3);
-}
-50% {
-    box-shadow:
-        0 10px 40px rgba(168, 85, 247, 0.5);
-}
-}
-
-/* =========================================================
-21. RESPONSIVE DESIGN
-========================================================= */
-
-@media (max-width: 768px) {
-body {padding: 25px 10px;}
-#addForm { width: 95%;
-    flex-direction: column;
+    border-radius: 10px;
 }
 
 
-#addForm input,
-#addForm button { width: 100%;}
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
 
+@media (max-width: 700px) {
 
-.question_box { width: 95%;  flex-direction: column;}
+    .question_box {
+        grid-template-columns: 1fr;
+    }
 
+    .question {
+        border-right: none;
 
-.question,
-.output { width: 100%;}
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
+    #addForm {
+        flex-direction: column;
+    }
 
-.output { border-left: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
-}
+    input,
+    select,
+    button {
+        width: 100%;
+    }
 
-
-.title {  width: 95%;}
-
-
-#demo,
-#demo1,
-#demo2 { width: 95%;}
-
-
-#oper,
-#ari,
-#comp,
-#log,
-#cond { width: 95%;}
-
-}
-
-/* =========================================================
-22. SMALL MOBILE DEVICES
-========================================================= */
-
-@media (max-width: 480px) {
-body { padding: 15px 8px; gap: 12px;}
-.title { font-size: 1.4rem;padding: 15px;}
-.question,.output {padding: 20px 15px;}
-.ip,.op { font-size: 0.9rem;}
-#oper,#ari,#comp,#log,#cond {
-    font-size: 0.9rem;
-    padding: 15px;
-}
-}
-
-/* =========================================================
-23. REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-*,
-*::before,
-*::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-}
+    .title {
+        margin-top: 50px;
+    }
 }
