@@ -1,7 +1,6 @@
 function while_loop(b) {
     let while_loop_even_var = 0;
     let while_loop_odd_var = 0;
-    let whi_loop_ele = document.getElementById("countEvenOdd_out");
     let i = 1;
     while (i <= b) {
         if (i % 2 == 0) { while_loop_even_var++; }
@@ -56,13 +55,48 @@ document.getElementById("Alert").addEventListener("click",hello);
 
 let student=[];
 
-document.getElementById("student_btn").addEventListener("click",function(){
+document.getElementById("student_count").addEventListener("click",function(){
     let inp = Number(document.getElementById("student_input").value);
-    let op=document.getElementById("student_output");
+    let op= document.getElementById("student_output");
     op.innerHTML="";
-    for(i=0;i<=inp;i++)
+    for(let i=0;i<inp;i++)
     {
-        op.innerHTML="
-        <div> </div>";
+        op.innerHTML+=`
+        <div> <input type="text" id="name_${i}" placeholder="name ${i+1}"><input type="number" id="marks_${i}" placeholder="marks ${i+1}"> </div>`;
     }
+});
+
+document.getElementById("student_save").addEventListener("click",function(){
+    let n= Number(document.getElementById("student_input").value);
+    student=[];
+    for(let i=0;i<n;i++)
+    {
+        let name=document.getElementById("name_"+i).value;
+        let marks=Number(document.getElementById("marks_"+i).value);
+        student.push({name:name,marks:marks});
+    }
+
+    //for higher and lower marks 
+    let high=student[0];
+    let low =student[0];
+    for(let i=1;i< n;i++)
+    {
+        if (high.marks<student[i].marks) {high=student[i];}
+        if (low.marks>student[i].marks) {low=student[i];}
+    }
+
+    let output="<h3> Students Details </h3>";
+    for(let i=0;i<n;i++)
+    {
+        for(let key in student[i])
+        {
+            output+=key +" : "+student[i][key]+"<br>";
+        }  //student[0] = { name: "Rahul",marks: 78};   => for(let key in student[0])    => give key = "name" key = "marks"   => student[0][key]   student[0]["name"]  → Rahul  and student[0]["marks"] → 78
+    }
+    output+="<br>";
+    output+= "<br> Highest Marks <br> Name: "+high.name+" Marks : "+high.marks+"<br>";
+    output+= "<br> Lowest Marks <br> Name: "+low.name+" Marks : "+low.marks+"<br>";
+
+    document.getElementById("student_output").innerHTML=output;
+
 });
