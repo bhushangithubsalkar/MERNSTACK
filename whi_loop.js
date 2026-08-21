@@ -50,53 +50,61 @@ document.getElementById("combine_bt").addEventListener("click", function () {
     document.getElementById("combine_op").innerHTML = "The number of even number is " + ev + "<br>The number of odd number is " + odd + "<br> smallest digit is " + small;
 })
 
-let hello=()=>{alert("Hello how are you");}   //arrow function
-document.getElementById("Alert").addEventListener("click",hello);
+let hello = () => { alert("Hello how are you"); }   //arrow function
+document.getElementById("Alert").addEventListener("click", hello);
 
-let student=[];
+let student = [];
 
-document.getElementById("student_count").addEventListener("click",function(){
+document.getElementById("student_count").addEventListener("click", function () {
     let inp = Number(document.getElementById("student_input").value);
-    let op= document.getElementById("student_output");
-    op.innerHTML="";
-    for(let i=0;i<inp;i++)
-    {
-        op.innerHTML+=`
-        <div> <input type="text" id="name_${i}" placeholder="name ${i+1}"><input type="number" id="marks_${i}" placeholder="marks ${i+1}"> </div>`;
+    let op = document.getElementById("student_output");
+    op.innerHTML = "";
+    for (let i = 0; i < inp; i++) {
+        op.innerHTML += `
+        <div> <input type="text" id="name_${i}" placeholder="name ${i + 1}"><input type="number" id="marks_${i}" placeholder="marks ${i + 1}"> </div>`;
     }
 });
 
-document.getElementById("student_save").addEventListener("click",function(){
-    let n= Number(document.getElementById("student_input").value);
-    student=[];
-    for(let i=0;i<n;i++)
-    {
-        let name=document.getElementById("name_"+i).value;
-        let marks=Number(document.getElementById("marks_"+i).value);
-        student.push({name:name,marks:marks});
+document.getElementById("student_save").addEventListener("click", function () {
+    let n = Number(document.getElementById("student_input").value);
+    student = [];
+    for (let i = 0; i < n; i++) {
+        let name = document.getElementById("name_" + i).value;
+        let marks = Number(document.getElementById("marks_" + i).value);
+        student.push({ name: name, marks: marks });
     }
 
     //for higher and lower marks 
-    let high=student[0];
-    let low =student[0];
-    for(let i=1;i< n;i++)
-    {
-        if (high.marks<student[i].marks) {high=student[i];}
-        if (low.marks>student[i].marks) {low=student[i];}
+    let high = student[0];
+    let low = student[0];
+    for (let i = 1; i < n; i++) {
+        if (high.marks < student[i].marks) { high = student[i]; }
+        if (low.marks > student[i].marks) { low = student[i]; }
     }
 
-    let output="<h3> Students Details </h3>";
-    for(let i=0;i<n;i++)
-    {
-        for(let key in student[i])
-        {
-            output+=key +" : "+student[i][key]+"<br>";
+    let output = "<h3> Students Details </h3>";
+    for (let i = 0; i < n; i++) {
+        for (let key in student[i]) {
+            output += key + " : " + student[i][key] + "<br>";
         }  //student[0] = { name: "Rahul",marks: 78};   => for(let key in student[0])    => give key = "name" key = "marks"   => student[0][key]   student[0]["name"]  → Rahul  and student[0]["marks"] → 78
     }
-    output+="<br>";
-    output+= "<br> Highest Marks <br> Name: "+high.name+" Marks : "+high.marks+"<br>";
-    output+= "<br> Lowest Marks <br> Name: "+low.name+" Marks : "+low.marks+"<br>";
+    output += "<br>";
+    output += "<br> Highest Marks <br> Name: " + high.name + " Marks : " + high.marks + "<br>";
+    output += "<br> Lowest Marks <br> Name: " + low.name + " Marks : " + low.marks + "<br>";
 
-    document.getElementById("student_output").innerHTML=output;
+    document.getElementById("student_output").innerHTML = output;
 
 });
+
+document.getElementById("pass_but").addEventListener("click", function () {
+    let a = Number(document.getElementById("pass_in").value);
+    let b = document.getElementById("pass_out");
+    let password = 123456;
+    if (a==password){
+        window.location.href="secpage.html";
+     }
+     else {
+        b.innerHTML="Enter correct password";
+     }
+});
+
