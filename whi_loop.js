@@ -108,3 +108,26 @@ document.getElementById("pass_but").addEventListener("click", function () {
      }
 });
 
+let mean_num=[];
+document.getElementById("mean_button").addEventListener("click", function () {
+    let a = Number(document.getElementById("mean_in").value);
+    let b = document.getElementById("mean_enter");
+    b.innerHTML="";
+    for(let i=0;i<a;i++)
+    {
+        b.innerHTML+=`<input type="number" id="mean_num${i}" placeholder="Number ${i+1}"> <br>`;
+    }
+});
+
+document.getElementById("mean_calcu").addEventListener("click", function () {
+    mean_num=[];
+    let a = Number(document.getElementById("mean_in").value);
+    let sum=0;
+    for(let i=0;i<a;i++)
+    {let value=Number(document.getElementById("mean_num"+i).value);
+        mean_num.push(value);
+        sum+=mean_num[i];}
+    let mean =sum/a;
+    document.getElementById("mean_op").innerHTML="Mean is "+mean;
+    
+});
