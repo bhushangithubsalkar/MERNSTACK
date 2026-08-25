@@ -18,4 +18,5 @@ document.getElementById("string_btn").addEventListener("click", function () {
     let sen=` <br> the name is ${d}`;
     c.innerHTML+=sen;
     
+    
 });
