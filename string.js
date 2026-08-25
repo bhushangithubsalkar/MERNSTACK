@@ -13,4 +13,9 @@ document.getElementById("string_btn").addEventListener("click", function () {
     c.innerHTML += "<br>Reverse: " + a.split("").reverse().join("");
 
     c.innerHTML += "<br>Concatenation: " + (a + b);
+
+    let d="pratham";
+    let sen=` <br> the name is ${d}`;
+    c.innerHTML+=sen;
+    
 });
