@@ -4,9 +4,12 @@ document.getElementById("string_btn").addEventListener("click", function () {
     let b = document.getElementById("string_inp1").value;
     let c = document.getElementById("string_op");
 
+    
     c.innerHTML = "Length: " + a.length;
 
-    c.innerHTML += "<br>Uppercase: " + a.toUpperCase();
+});
+document.get
+c.innerHTML += "<br>Uppercase: " + a.toUpperCase();
 
     c.innerHTML += "<br>Lowercase: " + a.toLowerCase();
 
@@ -17,6 +20,5 @@ document.getElementById("string_btn").addEventListener("click", function () {
     let d="pratham";
     let sen=` <br> the name is ${d}`;
     c.innerHTML+=sen;
-    
-    
-});
+
+    let fruit='Bhushan\'s';
