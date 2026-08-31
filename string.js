@@ -21,4 +21,4 @@ c.innerHTML += "<br>Uppercase: " + a.toUpperCase();
     let sen=` <br> the name is ${d}`;
     c.innerHTML+=sen;
 
-    let fruit='Bhushan\'s';
+    let fruit='Bhushan\'s'; //it is the example of excape character
