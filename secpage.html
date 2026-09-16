@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet"href="secpage_css.css">
-</head>
-<body>
-    <div>Welcome you have enter the correct password</div>
-    <div>Welcome to the next page </div>
-    <div> This is the journey for string </div>
-    <div> This is the original sentence </div>
-    <input type="text" id="string_inp">
-    <input type="text" id="string_inp1"><br>
-    <button type="button" id="string_btn">Check length</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="secpage_css.css">
+    </head>
+    <body>
+        <div>Welcome you have enter the correct password</div>
+        <div>Welcome to the next page </div>
+        <div> This is the journey for string </div>
+        <div> This is the original sentence </div>
+        <input type="text" id="string_inp">
+        <input type="text" id="string_inp1"><br>
+        <button type="button" id="string_btn">Check length</button>
 
-    <button type="button" id="string_upper_btn">convert into upper case</button>
+        <button type="button" id="string_upper_btn">convert into upper
+            case</button>
 
-    <button type="button" id="string_lower_btn">convert into lower case</button>
+        <button type="button" id="string_lower_btn">convert into lower
+            case</button>
 
-    <button type="button" id="string_reverse_btn">convert into reverse case</button>
+        <button type="button" id="string_reverse_btn">convert into reverse
+            case</button>
 
-    <button type="button" id="string_conc_btn">convert into concatenate case</button>
+        <button type="button" id="string_conc_btn">convert into concatenate
+            case</button>
 
-    <button type="button" id="string_new_btn">Add your name</button>
+        <button type="button" id="string_new_btn">Add your name</button>
 
-    <button type="button" id="string_replace_btn">Escape character</button>
+        <button type="button" id="string_replace_btn">
+            Replace the word
+        </button>
 
-    <div id="string_op">
-    </div>
+        <button type="button" id="Remove_space_btn">
+            Split the word</button>
 
-    
+        <div id="string_op">
+        </div>
 
-    <script src="string.js"></script>
+        <div id="string_slice">
+            <input type="text" id="string_slice_inp1" placeholder="Enter the word to slice"><br>
+            
+            <input type="text" id="string_slice_inp2" placeholder="Enter the starting char index "><br>
+            
+            <input type="text" id="string_slice_inp3" placeholder="Enter the ending char index "><br>   
 
-</body>
+            <button type="button" id="string_slice_btn">Slice the word</button>
+            <div id ="string_slice_op"></div>
+        </div>
+
+        <div class ="box-container">
+            <div class="box" data-value="Queen" >Queen</div>
+            <div class="box" data-value="King" >King </div>
+            <div class="box" data-value="Prince" >Prince</div>
+            <div class="box" data-value="Princess" >Princess</div>
+        </div>
+        <div class="control">
+            <input type ="text" id="string_conc2" placeholder="Enter the word"><br>
+            <button id="string_conc_btn2">joint the word</button>
+        </div>
+        <div id="string_conc_op2"></div>
+
+
+        <script src="string.js"></script>
+
+    </body>
 </html>
