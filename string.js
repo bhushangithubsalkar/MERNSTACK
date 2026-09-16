@@ -76,7 +76,6 @@ document.getElementById("string_slice_btn").addEventListener("click", function (
 
 });
 document.getElementById("string_conc_btn2").addEventListener("click", function () {
-    // FIX 1: Use querySelectorAll for classes, querySelector/getElementById for single elements
     const boxes = document.querySelectorAll(".box");
     const nameInp = document.getElementById("string_conc2");
     const op = document.getElementById("string_conc_op2");
@@ -88,7 +87,7 @@ document.getElementById("string_conc_btn2").addEventListener("click", function (
     }
 
     string_conc_btn.disabled = true;
-    
+
     // FIX 2: Fixed typo (op,innerHTML -> op.innerHTML)
     op.innerHTML = "Processing...";
 
@@ -97,10 +96,10 @@ document.getElementById("string_conc_btn2").addEventListener("click", function (
     const steps = Math.floor(Math.random() * 16) + 15;
 
     const interval = setInterval(function () {
-       
+
         boxes.forEach((boxItem) => boxItem.classList.remove("highlight"));
         currentIndex = counter % boxes.length;
-        
+
         boxes[currentIndex].classList.add("highlight");
 
         counter++;
@@ -118,6 +117,26 @@ document.getElementById("string_conc_btn2").addEventListener("click", function (
             // FIX 5: Re-enable the correct button variable
             string_conc_btn.disabled = false;
         }
-    }, 150); 
+    }, 150);
 });
-    let fruit = 'Bhushan\'s'; //it is the example of excape character
+
+document.getElementById("string_conc_btn3").addEventListener("click", function () {
+    let a = document.getElementById("string_conc3").value;
+    let b = document.getElementById("string_conc_op3");
+    for (let i = 0; i < a.length - 1; i++) {
+        b.innerHTML = "<br>Character at index " + i + ": " + a.charAt(i);
+    }
+});
+
+document.getElementById("string_email_btn").addEventListener("click", function () {
+    let a = document.getElementById("string_email").value;
+    let b = document.getElementById("string_email_op");
+    if (a.includes("@") && a.includes(".") && !a.startsWith("@") && !a.endsWith("@") && !a.endsWith(".")) {
+        b.innerHTML = "Valid email";
+    }
+    else{
+        b.innerHTML = "Invalid email";
+    }
+});
+
+let fruit = 'Bhushan\'s'; //it is the example of excape character
